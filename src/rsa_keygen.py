@@ -4,25 +4,28 @@
 # 
 # <diogopinto> 2025+
 # ------------------------------------------------------------
+from sympy import randprime
 from crypto_math import crypto_math
+import random
 
 class rsa_keygen:
 
-    def keygen():
-        # EN: Randomly select two prime numbers (in a real environment in a scale of 10¹⁰⁰)
-        # TODO: Make these values random from a list of prime numbers
-        p = 1543
-        q = 7817
+    def keygen(bits=512):
+        # EN: Randomly select two prime numbers (2²⁵⁶) according to the bitsize
+        p = randprime(2 ** (bits // 2 - 1), 2 ** (bits // 2))
+        q = randprime(2 ** (bits // 2 - 1), 2 **( bits // 2))
 
+        while p == q:
+            q = randprime(2 ** (bits // 2 - 1), 2 ** (bits // 2))
+
+        # EN: n ≈ 2²⁵⁶×2²⁵⁶ = 2⁵¹²
         n = p * q
 
         # EN: Calculate the totient, ø(n) , of n
         phi = crypto_math.totient(p, q)
 
-        # EN: Get the public key (e), 1 < e < phi && gcd(e, phi) = 1
-        e = 2
-        while crypto_math.gcd(e, phi) != 1:
-            e += 1
+        # EN: Common choice
+        e = 65537
 
         public_key = [e, n]
 
@@ -32,7 +35,3 @@ class rsa_keygen:
         private_key = [d, n]
 
         return public_key, private_key
-
-keys = rsa_keygen.keygen()
-print(f"[RSA] Public Key: {keys[0]}")
-print(f"[RSA] Private Key: {keys[1]}")
