@@ -39,6 +39,8 @@ def main():
                 private_temp = private.read().split(", ")
                 public_temp = public.read().split(", ")
 
+                # EN: The key fetching systmem expects keys in their raw integer form.
+                # TODO: Encode keys in base64
                 private = [int(private_temp[0].strip('[')), int(private_temp[1].strip(']'))]
                 public = [int(public_temp[0].strip('[')), int(public_temp[1].strip(']'))]
 
