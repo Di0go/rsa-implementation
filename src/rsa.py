@@ -8,6 +8,7 @@
 # ----------------------------------------------
 
 from rsa_keygen import rsa_keygen
+import os
 
 class rsa:
 
@@ -23,9 +24,25 @@ class rsa:
 
 def main():
 
-    # EN: Generate default keys
-    # TODO: Save in files, pub.rsa and priv.rsa
-    keys = rsa_keygen.keygen()
+    if not os.path.exists('private.rsa') or not os.path.exists('public.rsa'):
+            # EN: Generate default keys
+            keys = rsa_keygen.keygen()
+
+            with open('private.rsa', 'w') as private, open('public.rsa', 'w') as public:
+                private.write(str(keys[1]))
+                public.write(str(keys[0]))
+    else:
+        keys = []
+
+        # EN: Get the keys from the public.rsa and private.rsa files
+        with open('private.rsa', 'r') as private, open('public.rsa', 'r') as public:
+                private_temp = private.read().split(", ")
+                public_temp = public.read().split(", ")
+
+                private = [int(private_temp[0].strip('[')), int(private_temp[1].strip(']'))]
+                public = [int(public_temp[0].strip('[')), int(public_temp[1].strip(']'))]
+
+                keys = [public, private]
 
     while True:
         print("\n==============================\n" +
@@ -64,6 +81,10 @@ def main():
             case '3':
                 keys = rsa_keygen.keygen()
 
+                with open('private.rsa', 'w') as private, open('public.rsa', 'w') as public:
+                    private.write(str(keys[1]))
+                    public.write(str(keys[0]))
+
                 print(f"[RSA] Public Key: {keys[0]}")
                 print(f"[RSA] Private Key: {keys[1]}")
 
@@ -75,5 +96,5 @@ def main():
                 continue
 
 
-if __name__=="__main__":
+if __name__== "__main__":
     main()

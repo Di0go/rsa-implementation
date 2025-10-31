@@ -11,10 +11,12 @@ import random
 class rsa_keygen:
 
     def keygen(bits=512):
-        # EN: Randomly select two prime numbers (2²⁵⁶) according to the bitsize
+
+        # EN: Randomly select two prime numbers (2²⁵⁶)
         p = randprime(2 ** (bits // 2 - 1), 2 ** (bits // 2))
         q = randprime(2 ** (bits // 2 - 1), 2 **( bits // 2))
 
+        # EN: Make sure those two primes are not equal
         while p == q:
             q = randprime(2 ** (bits // 2 - 1), 2 ** (bits // 2))
 

@@ -1,2 +1,6 @@
+# venv and python stuff
 __pycache__
 venv
+
+# public.rsa && private.rsa files that store the generated keys
+*.rsa

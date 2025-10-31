@@ -24,7 +24,6 @@ class crypto_math:
             val_a, val_b = val_b, remainder
 
     # EN: The extended version not only finds the GCD but also provides coefficients x and y such that: ax+by=GCD(a,b)
-    # a = public key; x = private key (modular inverse); b = ø(n);
     def extended_gcd(a, b):
 
         # EN: Base case
@@ -47,7 +46,6 @@ class crypto_math:
         if (gcd != 1):
             raise Exception("[crypto_math] Modular inverse does not exist!")
         else:
-            # EN: % mod ensures this value is positive
             return x % mod 
 
     # EN: This function determines the totient of n by using ø(n) = (p - 1) (q - 1)
