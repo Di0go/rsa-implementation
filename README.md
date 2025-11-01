@@ -1,4 +1,4 @@
-# 🔐 RSA Implementation in Python
+# RSA Implementation in Python
 
 A basic implementation of the **RSA (Rivest–Shamir–Adleman) public-key cryptosystem** built in Python for educational purposes. This project includes functionality for key generation, encryption, and decryption. 
 
@@ -15,7 +15,7 @@ A basic implementation of the **RSA (Rivest–Shamir–Adleman) public-key crypt
 
 ---
 
-## 🛠️ Setup and Installation
+## Setup and Installation
 
 You need **Python 3** installed. This project also relies on the `sympy` library for prime number generation.
 
@@ -45,7 +45,7 @@ You need **Python 3** installed. This project also relies on the `sympy` library
 
 ---
 
-## ⚠️ Known Limitations and Future Work
+## Known Limitations and Future Work
 
 This implementation is for educational use only; **do not use it for secure, production-grade applications.**
 
